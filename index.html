@@ -583,7 +583,7 @@
     /* =========================================================
        ИЗОБРАЖЕНИЯ
        ========================================================= */
-    img {
+	img {
         display: block;
         margin: 0 auto;
         box-shadow: none !important;
@@ -594,18 +594,19 @@
     @media (min-width: 768px) {
         img {
             width: 100%;
-            border-radius: 12px;
         }
     }
 
     @media (max-width: 767px) {
         img {
-            width: calc(100% - 12px) !important;
-            max-width: calc(100% - 12px) !important;
-            position: static !important;
-            transform: none !important;
-            margin: 12px auto !important;
-            border-radius: 12px;
+            width: 190vw;
+            max-width: 190vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0;
             box-shadow: none !important;
         }
     }
