@@ -580,12 +580,12 @@
         width: 100%;
     }
 
-    /* =========================================================
-       ИЗОБРАЖЕНИЯ (ВЕРНУТО К 190px + ОТСТУП СНИЗУ)
+        /* =========================================================
+       ИЗОБРАЖЕНИЯ (десктоп + мобильный блок)
        ========================================================= */
     picture {
         display: block;
-        margin-bottom: 24px;
+        margin-bottom: 25px !important; /* Отступ от иллюстрации до текста */
     }
 
     img {
@@ -593,9 +593,9 @@
         margin: 0 auto;
         box-shadow: none !important;
         height: auto;
-        max-width: 100%;
     }
 
+    /* Для компьютеров / планшетов */
     @media (min-width: 768px) {
         img {
             width: 100%;
@@ -603,16 +603,15 @@
         }
     }
 
+    /* Для мобильных устройств (смартфонов) */
     @media (max-width: 767px) {
         picture {
-            display: block;
-            margin-bottom: 24px !important; /* Отступ от картинки до текста снизу */
+            margin-bottom: 25px !important; /* Отступ снизу специально для смартфонов */
         }
 
         img {
-            width: 100% !important;
-            max-width: 320px !important;    /* Нормальный крупный размер на смартфонах */
-            height: auto !important;
+            width: 190px !important;        /* Исходные 190px */
+            max-width: 100% !important;
             display: block !important;
             margin: 0 auto !important;      /* Выравнивание по центру */
             border-radius: 0;
@@ -638,13 +637,13 @@
             <div class="note-content">
                 <h1 class="note-blue">Как победить одиночество?</h1>
 
-                <picture id="blogPicture">
-                    <!-- Картинка для ТЕМНОЙ темы -->
-                    <source id="darkSource" srcset="2.png" media="(prefers-color-scheme: dark)">
+                <<picture id="blogPicture" style="display: block; margin-bottom: 25px;">
+    			<!-- Картинка для ТЕМНОЙ темы -->
+   				 <source id="darkSource" srcset="2.png" media="(prefers-color-scheme: dark)">
 
-                    <!-- Картинка по умолчанию (для СВЕТЛОЙ темы) -->
-                    <img id="mainImg" src="1.png" alt="Как справиться с одиночеством?">
-                </picture>
+    			<!-- Картинка по умолчанию (для СВЕТЛОЙ темы) -->
+   				<img id="mainImg" src="1.png" alt="Как справиться с одиночеством?" width="190" style="display: block; margin: 0 auto; width: 190px !important; height: auto;">
+				</picture>
 
                 <p>Согласно одному опросу, проведённому в большинстве стран мира, примерно каждый четвёртый человек чувствует себя одиноко. Бывает ли вам одиноко? Сегодня всё больше людей испытывает одиночество. Если вы тоже чувствуете себя одиноко, можно ли справиться с этой проблемой? Да, и у многих это получилось. Победить одиночество под силу и вам.</p>
 
