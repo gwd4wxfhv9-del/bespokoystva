@@ -605,19 +605,21 @@
 
     @media (max-width: 767px) {
         picture {
-            margin-bottom: 20px !important;
+            display: block;
+            margin-bottom: 24px !important; /* Отступ от картинки до текста снизу */
         }
 
         img {
-            width: 190px !important;
-            max-width: 100% !important;
-            position: static !important;
-            transform: none !important;
-            margin: 0 auto !important;
+            width: 100% !important;
+            max-width: 320px !important;    /* Нормальный крупный размер на смартфонах */
+            height: auto !important;
+            display: block !important;
+            margin: 0 auto !important;      /* Выравнивание по центру */
             border-radius: 0;
             box-shadow: none !important;
         }
     }
+
     </style>
 </head>
 
