@@ -219,31 +219,13 @@
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Подложка для всех карточек (с внешними и внутренними тенями) */
+    /* Подложка для всех карточек */
     .main-container {
-        position: relative;
         background-color: var(--container-bg);
         padding: 32px 24px;
         border-radius: 24px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
         transition: background-color 0.3s ease;
-        overflow: hidden;
-    }
-
-    /* Тень и объём для подложки в тёмной теме */
-    html[data-theme="dark"] .main-container {
-        box-shadow: none;
-    }
-
-    html[data-theme="dark"] .main-container::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 24px;
-        pointer-events: none;
-        box-shadow:
-            inset 0 1px 1px rgba(255, 255, 255, 0.15),
-            inset 0 -1px 2px rgba(0, 0, 0, 0.20);
     }
 
     /* Выделение полужирного текста */
@@ -266,13 +248,13 @@
     }
 
     /* =========================================================
-       БЛОКИ ЗАМЕТОК (БЕЗ ТЕНЕЙ)
+       БЛОКИ ЗАМЕТОК
        ========================================================= */
     .note-block {
         margin: 0 0 30px;
         background: var(--note-bg);
         border-radius: 16px;
-        box-shadow: none !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         position: relative;
         overflow: hidden;
     }
@@ -281,17 +263,20 @@
         margin-bottom: 0;
     }
 
-    /* Эффект нахлёста для первого блока */
-    .note-block-overlap {
-        margin-bottom: -24px !important;
-        position: relative;
-        z-index: 2;
-        box-shadow: none !important;
+    html[data-theme="dark"] .note-block {
+        box-shadow: none;
     }
 
-    /* Убран псевдоэлемент тени тёмной темы у внутренних блоков */
     html[data-theme="dark"] .note-block::after {
-        display: none !important;
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        pointer-events: none;
+
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.15),
+            inset 0 -1px 2px rgba(0, 0, 0, 0.20);
     }
 
     h2.note-blue,
@@ -409,23 +394,20 @@
     }
 
     /* =========================================================
-       АДАПТИВ И МОБИЛЬНАЯ ВЕРСИЯ
+       АДАПТИВ
        ========================================================= */
     @media (max-width: 768px) {
         body {
             padding: 8px;
-            font-size: 1em;
+            font-size: 1em; /* На мобильных сохраняем стандартный размер */
         }
 
+        /* Отключаем подложку на мобильных */
         .main-container {
-            padding: 16px;
-            background-color: var(--container-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        html[data-theme="dark"] .main-container::after {
-            border-radius: 16px;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            border-radius: 0;
         }
 
         .note-block {
@@ -597,8 +579,7 @@
     <!-- Основная подложка страницы -->
     <div class="main-container">
 
-        <!-- Первый блок с заголовком и эффектом нахлёста (без тени) -->
-        <div class="note-block note-block-overlap">
+        <div class="note-block">
             <div class="note-content">
                 <h1 class="note-blue">Как победить одиночество?</h1>
             </div>
