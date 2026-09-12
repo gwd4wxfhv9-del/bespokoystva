@@ -43,7 +43,7 @@
         /* заголовок light */
         --h1-border: linear-gradient(90deg, #e1ddec, #f7d8b4, #f9f1c0);
         
-        /* blockquote light */
+        /* blockquote light (светлый плашечный стиль в цвет заголовка h2) */
         --bq-bg: linear-gradient(90deg, #ece9f3 0%, #f9f7fc 80%, #f9f7fc 100%);
         --bq-text: var(--text-color);
         --bq-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
@@ -67,6 +67,656 @@
         --bg: #101010;
         --container-bg: #181818;   /* Подложка в тёмной теме */
 
+        --text-primary: #f5f4f0;
+        --text: #d6d5cf;
+        --text-secondary: #9e9e98;
+
+        --heading-color: var(--text-primary);
+        --text-color: var(--text);
+        --link-color: #8cc2dd;
+
+        --note-bg: #222222;
+        --note-blue: #3f86c9;
+        --note-pink: #c94f8a;
+        --note-orange: #c77745;
+
+        --glass-bg: #262626;
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --glass-text: var(--text-primary);
+
+        --h1-color: #f7f5ee;
+        --h1-border: linear-gradient(90deg, #3d3b38 0%, #5a3e36 50%, #4a4837 100%);
+
+        --h2-blue-text: #f0efe9;
+        --h2-pink-text: #f0efe9;
+        --h2-orange-text: #f0efe9;
+
+        /* blockquote dark: плашка идентична цвету синего заголовка h2 из темной темы */
+        --bq-bg: #3d3b38;
+        --bq-text: var(--text-primary);
+        --bq-shadow:
+        	inset 0 1px 1px rgba(255, 255, 255, 0.10),
+        	inset 0 -1px 2px rgba(0, 0, 0, 0.20);
+        --bq-text-shadow: none;
+        --h2-text-shadow: none;
+        
+        --h2-blue-bg: #3d3b38;
+        --h2-pink-bg: #5a3e36;
+        --h2-orange-bg: #4a4837;
+
+        /* progress bar dark */
+        --progress-bg: #ff6b81;
+        --progress-shadow: 0 2px 10px rgba(255, 107, 129, 0.8);
+    }
+
+    /* =========================================================
+       АВТООПРЕДЕЛЕНИЕ ТЁМНОЙ ТЕМЫ
+       ========================================================= */
+    @media (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]) {
+            --bg: #101010;
+            --container-bg: #181818;
+
+            --text-primary: #f5f4f0;
+            --text: #d6d5cf;
+            --text-secondary: #9e9e98;
+
+            --heading-color: var(--text-primary);
+            --text-color: var(--text);
+            --link-color: #8cc2dd;
+
+            --note-bg: #222222;
+            --note-blue: #3f86c9;
+            --note-pink: #c94f8a;
+            --note-orange: #c77745;
+
+            --glass-bg: rgba(40, 40, 40, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-text: var(--text-primary);
+
+            --h1-color: #f7f5ee;
+            --h1-border: linear-gradient(90deg, #3d3b38 0%, #5a3e36 50%, #4a4837 100%);
+
+            --h2-blue-text: #f0efe9;
+            --h2-pink-text: #f0efe9;
+            --h2-orange-text: #f0efe9;
+
+            --bq-bg: #3d3b38;
+            --bq-text: var(--text-primary);
+            --bq-shadow: 
+		inset 0 1px 1px rgba(255, 255, 255, 0.10),
+        	inset 0 -1px 2px rgba(0, 0, 0, 0.20);
+            --bq-text-shadow: none;
+
+            --h2-text-shadow: none;
+            
+            --h2-blue-bg: #3d3b38;
+            --h2-pink-bg: #5a3e36;
+            --h2-orange-bg: #4a4837;
+
+            --progress-bg: #ff6b81;
+            --progress-shadow: 0 2px 10px rgba(255, 107, 129, 0.8);
+        }
+    }
+
+    /* =========================================================
+       КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ
+       ========================================================= */
+    .theme-toggle-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100000;
+        
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        color: var(--glass-text);
+        
+        backdrop-filter: blur(22px) saturate(180%);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        box-shadow: var(--glass-shadow);
+
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-toggle-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .theme-toggle-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .theme-toggle-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* =========================================================
+       ОСНОВНЫЕ СТИЛИ И ПОДЛОЖКА
+       ========================================================= */
+    body {
+        margin: auto;
+        padding: 20px 10px;
+        max-width: var(--width);
+        font-family: var(--font-secondary);
+        font-size: var(--font-scale);
+        line-height: 1.5;
+        background-color: var(--bg);
+        color: var(--text);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Подложка для всех карточек */
+    .main-container {
+        background-color: var(--container-bg);
+        padding: 24px 16px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        transition: background-color 0.3s ease;
+    }
+
+    /* Выделение полужирного текста */
+    b, strong, .note-content b, .note-content strong {
+        color: var(--text-primary);
+    }
+
+    blockquote {
+        background: var(--bq-bg);
+        color: var(--bq-text);
+        border-left: none;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin: 30px 0;
+        font-family: var(--font-main);
+        font-style: normal;
+        font-size: 1.15em;
+        box-shadow: var(--bq-shadow);
+        text-shadow: var(--bq-text-shadow);
+    }
+
+    /* =========================================================
+       БЛОКИ ЗАМЕТОК
+       ========================================================= */
+    .note-block {
+        margin: 0 0 24px;
+        background: var(--note-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .note-block:last-child {
+        margin-bottom: 0;
+    }
+
+    html[data-theme="dark"] .note-block {
+        box-shadow: none;
+    }
+
+    html[data-theme="dark"] .note-block::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        pointer-events: none;
+
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.15),
+            inset 0 -1px 2px rgba(0, 0, 0, 0.20);
+    }
+
+    h2.note-blue,
+    h2.note-pink,
+    h2.note-orange {
+        margin: 0;
+        padding: 14px 20px;
+        font-size: 1.15rem;
+        font-weight: 600 !important;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        text-shadow: var(--h2-text-shadow) !important;
+    }
+
+    h2.note-blue { 
+        background: var(--h2-blue-bg) !important; 
+        color: var(--h2-blue-text) !important;
+    }
+
+    h2.note-pink { 
+        background: var(--h2-pink-bg) !important; 
+        color: var(--h2-pink-text) !important;
+    }
+
+    h2.note-orange { 
+        background: var(--h2-orange-bg) !important; 
+        color: var(--h2-orange-text) !important;
+    }
+
+    .note-content {
+        padding: 18px 20px;
+        background: var(--note-bg);
+        border-radius: 12px;
+        color: var(--text);
+    }
+
+    h2 + .note-content {
+        border-radius: 0;
+    }
+
+    .note-content > *:first-child {
+        margin-top: 0 !important;
+    }
+
+    .note-content > *:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* =========================================================
+       ACCORDION
+       ========================================================= */
+    details {
+        margin-bottom: 28px;
+    }
+
+    summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        border-radius: 9999px;
+        font-family: system-ui, -apple-system, "Trebuchet MS", sans-serif;
+        font-size: 0.97rem;
+        font-weight: 600;
+        color: var(--glass-text);
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(22px) saturate(180%);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.4);
+        transition: transform 0.2s ease, box-shadow 0.25s ease;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    summary:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow:
+            0 10px 35px rgba(0,0,0,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.75);
+    }
+
+    summary:active {
+        transform: scale(0.98);
+    }
+
+    details[open] summary {
+        display: none;
+    }
+
+    .accordion-content {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    details[open] .accordion-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* =========================================================
+       H1
+       ========================================================= */
+    h1 {
+        margin: 0 0 20px;
+        padding: 6px 10px;
+        font-weight: 600;
+        color: var(--h1-color);
+        border-bottom: 6px solid transparent;
+        border-image: var(--h1-border) 1;
+        border-left: none;
+        border-right: none;
+    }
+
+    /* =========================================================
+       АДАПТИВ
+       ========================================================= */
+    @media (max-width: 768px) {
+        body {
+            padding: 8px;
+        }
+
+        /* Отключаем подложку на мобильных */
+        .main-container {
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .note-block {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        summary {
+            margin-left: 0;
+        }
+
+        h1 {
+            line-height: 1.1 !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            font-size: 1.6rem !important;
+        }
+    }
+
+    /* =========================================================
+       СКРЫТИЕ ЭЛЕМЕНТОВ
+       ========================================================= */
+    nav,
+    footer,
+    .post-nav,
+    .upvote-button,
+    .title,
+    .date,
+    .post-date,
+    time {
+        display: none !important;
+    }
+
+    /* =========================================================
+       ПРОГРЕСС БАР
+       ========================================================= */
+    .reading-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        z-index: 99999;
+        background: var(--progress-bg);
+        box-shadow: var(--progress-shadow);
+        transform-origin: 0 50%;
+        animation: scroll-progress auto linear;
+        animation-timeline: scroll();
+    }
+
+    @keyframes scroll-progress {
+        from {
+            transform: scaleX(0);
+        }
+
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    @supports not (animation-timeline: scroll()) {
+        .reading-progress-bar {
+            display: none;
+        }
+    }
+
+    /* =========================================================
+       СКРОЛЛБАР
+       ========================================================= */
+    *::-webkit-scrollbar {
+        width: 0px !important;
+        height: 0px !important;
+        background: transparent !important;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: transparent !important;
+    }
+
+    html,
+    body {
+        scrollbar-width: none !important;
+        scrollbar-gutter: none !important;
+        overflow-x: hidden;
+    }
+
+    * {
+        -ms-overflow-style: none !important;
+    }
+
+    /* =========================================================
+       СНОСКИ
+       ========================================================= */
+    sup a {
+        text-decoration: none;
+        font-size: 0.8em;
+        font-weight: bold;
+        padding: 0 2px;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .footnotes {
+        font-size: 0.9em;
+        color: var(--text-secondary);
+        border-top: 1px solid rgba(128, 128, 128, 0.2);
+        margin-top: 50px;
+    }
+
+    .spacer {
+        height: 25px;
+        width: 100%;
+    }
+
+    /* =========================================================
+       ИЗОБРАЖЕНИЯ
+       ========================================================= */
+    img {
+        display: block;
+        margin: 0 auto;
+        box-shadow: none !important;
+        height: auto;
+        max-width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        img {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        img {
+            width: 200vw;
+            max-width: 200vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0;
+            box-shadow: none !important;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Переключить тему"></button>
+
+    <div class="reading-progress-bar"></div>
+
+    <!-- Основная подложка страницы -->
+    <div class="main-container">
+
+        <div class="note-block">
+            <div class="note-content">
+                <h1 class="note-blue">Как победить одиночество?</h1>
+            </div>
+        </div>
+        	
+        <div class="note-block">
+            <div class="note-content">
+                <picture id="blogPicture">
+                    <!-- Картинка для ТЕМНОЙ темы -->
+                    <source id="darkSource" srcset="2.png" media="(prefers-color-scheme: dark)">
+
+                    <!-- Картинка по умолчанию (для СВЕТЛОЙ темы) -->
+                    <img id="mainImg" src="1.png" alt="Как справиться с одиночеством?">
+                </picture>
+
+                <ul></ul>
+
+                Согласно одному опросу, проведённому в большинстве стран мира, примерно каждый четвёртый человек чувствует себя одиноко. Бывает ли вам одиноко? Сегодня всё больше людей испытывает одиночество. Если вы тоже чувствуете себя одиноко, можно ли справиться с этой проблемой? Да, и у многих это получилось. Победить одиночество под силу и вам.
+
+                <ul></ul>
+
+                Одиночество знакомо многим, но причины у него разные — и чтобы справиться с этим чувством, полезно сначала понять, откуда оно берётся.
+                У одних людей просто не получается проводить достаточно времени с другими: не хватает друзей или родных рядом, круг общения потерян из-за переезда, учёбы или выхода на пенсию, а иногда просто не находится тех, кто разделяет их интересы. У других общения хватает, но не хватает глубины — близких, доверительных отношений. Это особенно заметно после потери спутника жизни, развода или когда человеку кажется, что его никто по-настоящему не понимает и не замечает.
+
+                <ul></ul>
+
+                Есть и обстоятельства, которые могут усиливать одиночество. Например, современные технологии во многом облегчают жизнь, но одновременно сокращают количество живого общения: покупки можно делать не выходя из дома, работа всё чаще проходит удалённо, а социальные сети вместо чувства близости не редко вызывают зависть, сравнение себя с другими и ощущение, что ты остаёшься в стороне.
+
+                <ul></ul>
+
+                Проблемы с психическим здоровьем идут рука об руку с одиночеством, лишь усиливая чувство подавленности. Человек в таком состоянии может думать, что его жизнь лишена смысла и он никому не нужен. Кроме того, чувство тревоги и низкая самооценка могут мешать человеку идти на контакт с другими и обращаться к ним за помощью.
+
+                <ul></ul>
+
+                Травмы прошлого. Если в прошлом человек подвергался физическому или эмоциональному насилию, последствия могут ощущаться долгие годы. Ему может быть трудно доверять другим и сближаться с ними.
+            </div>
+        </div>
+
+        <div class="note-block">
+            <h2 class="note-blue">Как победить одиночество?</h2>
+
+            <div class="note-content">
+                Одиночество можно сравнить с чувством голода. Голод сигнализирует, что нам нужно поесть, а одиночество подсказывает, что нам не хватает близких, дружеских отношений. Как подружиться с человеком, если вы не уверены, что он хочет стать вашим другом? Не ждите, пока он сделает первый шаг. Сами проявите инициативу. Ищите возможности помогать другим и поддерживать их, когда им тяжело.
+
+                <ul></ul>
+
+                <blockquote class="custom-quote">
+                    Попробуйте жить по правилу: «Большее счастье — давать, а не получать»<sup id="ref2"><a href="#fn1" style="text-decoration:none;color:var(--link-color);font-weight:bold;">*</a></sup>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="note-block">
+            <h2 class="note-pink">Работает ли это?</h2>
+
+            <div class="note-content">
+                Подумайте вот о чём: с кем вам нравится проводить время? С тем, кто зациклен только на себе, или с тем, кто интересуется другими? Конечно, всем нам приятнее общаться с теми, кто заботится о других. Если вы сделали что-то для человека, он, скорее всего, захочет узнать вас получше и сделать что-то хорошее в ответ.
+
+                Конечно, не каждый добрый поступок приведёт к дружбе. Но в любом случае, проявляя доброту, вы только выигрываете. Когда вы помогаете другим, ваши негативные чувства, в том числе чувство одиночества, отходят на второй план. Те, кто помогает другим, чувствуют себя нужными и уверены, что живут не зря. Они более позитивно смотрят на себя и на свои обстоятельства. Зачастую они меньше подвержены тревоге и депрессии, у них меньше проблем со здоровьем и они ведут более счастливую жизнь.
+            </div>
+        </div>
+
+        <div class="note-block">
+            <h2 class="note-orange">Как это применить?</h2>
+
+            <div class="note-content">
+                <ul>
+                    <li><b>Начните с малого</b></li>
+                </ul>
+
+                Для начала попробуйте проявить внимание к тем, кого вы уже знаете. Скорее всего, это будет проще и не так страшно, как пытаться наладить контакт с совершенно новыми людьми. К примеру, можно чем-то угостить человека или подарить ему скромный подарок. Даже небольшое проявление доброты может многое значить для других. Когда вы остаётесь одни, почему бы не воспользоваться этим временем и не послать короткое сообщение кому-то из знакомых, чтобы поинтересоваться, как у них дела? Люди ценят, когда кто-то о них думает.
+
+                <ul>
+                    <li><b>Заботьтесь о других</b></li>
+                </ul>
+
+                Подумайте о тех, кого вы знаете, и спросите себя: «В чём они нуждаются? Что их может порадовать?» Предложите конкретную помощь, например тому, кто очень загружен. Например, пожилые люди могут научить других какому-то полезному навыку или как-то ещё передать им свой богатый жизненный опыт, а молодые – помочь в разными бытовыми вопросами. То, что вам кажется мелочью, для других может значить очень много.
+
+                <ul>
+                    <li><b>Будьте наблюдательны</b></li>
+                </ul>
+
+                Занимаясь повседневными делами, обращайте внимание на то, в чём нуждаются окружающие. Когда уместно, улыбайтесь тем, кого встречаете, и здоровайтесь с ними. Если вы замечаете, что человек расстроен или у него проблемы со здоровьем, постарайтесь поставить себя на его место и проникнуться его чувствами. Тогда вы захотите как-то ему помочь. Так в вашей жизни появятся новые знакомые, которые со временем могут стать вам настоящими друзьями. Не забывайте о себе. Заботьтесь о своём здоровье и высыпайтесь. Помните, что ваши возможности ограничены, и не доводите себя до выгорания. Тогда у вас будет запас физических и эмоциональных сил, чтобы помогать другим. Люди по своей природе нуждаются друг в друге, поэтому старайтесь думать о других и помогать им, в то же время не забывая о себе и своих потребностях. Так вы сможете успешно бороться с одиночеством.
+
+                <ul>
+                    <li><b>Не забывайте о себе</b></li>
+                </ul>
+
+                <ul></ul>
+
+                Заботьтесь о своём здоровье и высыпайтесь. Помните, что ваши возможности ограничены, и не доводите себя до выгорания. Тогда у вас будет запас физических и эмоциональных сил, чтобы помогать другим. Люди по своей природе нуждаются друг в друге, поэтому старайтесь думать о других и помогать им, в то же время не забывая о себе и своих потребностях. Так вы сможете успешно бороться с одиночеством.
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 15px; border-top: 1px solid rgba(128,128,128,0.2); font-size: 0.9em;">
+            <p id="fn1" style="display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;">
+                <a href="#ref2" style="text-decoration: none; color: var(--link-color); font-size: 1.2em; font-weight: 900; background: rgba(50, 115, 220, 0.1); padding: 2px 5px; border-radius: 4px;">↑</a>
+                <span>* - источник: Св. Писание</span>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Скрипт переключения темы и картинки -->
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        const htmlEl = document.documentElement;
+        const mainImg = document.getElementById('mainImg');
+        const darkSource = document.getElementById('darkSource');
+
+        // Векторные иконки Material Design
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"/></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t76-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg>`;
+
+        // Проверка сохраненной темы
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlEl.setAttribute('data-theme', 'dark');
+                toggleBtn.innerHTML = sunIcon;
+                mainImg.src = '2.png';
+                darkSource.srcset = '2.png';
+            } else {
+                htmlEl.setAttribute('data-theme', 'light');
+                toggleBtn.innerHTML = moonIcon;
+                mainImg.src = '1.png';
+                darkSource.srcset = '1.png';
+            }
+        }
+
+        // Инициализация
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(systemDark ? 'dark' : 'light');
+        }
+
+        // Клик по кнопке
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme =
+                htmlEl.getAttribute('data-theme') ||
+                (systemDark ? 'dark' : 'light');
+
+            const newTheme =
+                currentTheme === 'dark' ? 'light' : 'dark';
+
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>
         --text-primary: #f5f4f0;
         --text: #d6d5cf;
         --text-secondary: #9e9e98;
