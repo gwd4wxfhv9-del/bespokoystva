@@ -581,39 +581,31 @@
     }
 
         /* =========================================================
-       ИЗОБРАЖЕНИЯ (десктоп + мобильный блок)
+       ИЗОБРАЖЕНИЯ
        ========================================================= */
-    picture {
-        display: block;
-        margin-bottom: 25px !important; /* Отступ от иллюстрации до текста */
-    }
-
     img {
         display: block;
         margin: 0 auto;
         box-shadow: none !important;
         height: auto;
+        max-width: 100%;
     }
 
-    /* Для компьютеров / планшетов */
     @media (min-width: 768px) {
         img {
             width: 100%;
-            border-radius: 12px;
         }
     }
 
-    /* Для мобильных устройств (смартфонов) */
     @media (max-width: 767px) {
-        picture {
-            margin-bottom: 25px !important; /* Отступ снизу специально для смартфонов */
-        }
-
         img {
-            width: 190px !important;        /* Исходные 190px */
-            max-width: 100% !important;
-            display: block !important;
-            margin: 0 auto !important;      /* Выравнивание по центру */
+            width: 190vw;
+            max-width: 190vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: 0;
+            margin-right: 0;
             border-radius: 0;
             box-shadow: none !important;
         }
