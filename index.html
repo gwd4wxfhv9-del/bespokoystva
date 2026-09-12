@@ -579,15 +579,10 @@
         height: 25px;
         width: 100%;
     }
-
+		
     /* =========================================================
-       ИЗОБРАЖЕНИЯ (ИСПРАВЛЕНО: ДОБАВЛЕНЫ ОТСТУПЫ СНИЗУ)
+       ИЗОБРАЖЕНИЯ
        ========================================================= */
-    picture {
-        display: block;
-        margin-bottom: 24px;
-    }
-
     img {
         display: block;
         margin: 0 auto;
@@ -604,16 +599,12 @@
     }
 
     @media (max-width: 767px) {
-        picture {
-            margin-bottom: 20px !important;
-        }
-
         img {
-            width: calc(200% - 5px) !important;
-            max-width: calc(200% - 5px) !important;
+            width: calc(100% - 12px) !important;
+            max-width: calc(100% - 12px) !important;
             position: static !important;
             transform: none !important;
-            margin: 0 auto !important;
+            margin: 12px auto !important;
             border-radius: 12px;
             box-shadow: none !important;
         }
