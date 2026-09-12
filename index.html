@@ -6,7 +6,7 @@
     <title>Мой Блог</title>
 	
     <!-- Цвет шапки браузера под цвет фона -->
-    <meta name="theme-color" content="#eaebef" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#f2f3f7" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#101010" media="(prefers-color-scheme: dark)">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -20,16 +20,16 @@
         --font-secondary: Verdana, sans-serif;
         --font-scale: 1.18em;
 
-        /* цвета (светлая тема) */
-        --bg: #eaebef;             /* Чуть уплотнили фон для отличного контраста теней */
-        --container-bg: #f9f9fb;   /* Блок-подложка */
+        /* цвета (чистая светлая тема) */
+        --bg: #f2f3f7;             /* Свежий светлый фон */
+        --container-bg: #ffffff;   /* Белоснежные карточки */
         --text: #2c2c2e;
         --text-primary: #111111;
-        --text-color: #3b3b3b;
+        --text-color: #2c2c2e;
 
-        --heading-color: #222;
-        --link-color: #3273dc;
-        --visited-color: #8b6fcb;
+        --heading-color: #111111;
+        --link-color: #0066cc;
+        --visited-color: #6b4ba1;
 
         --code-background-color: #f2f2f2;
         --code-color: #222;
@@ -37,34 +37,36 @@
 
         /* блоки заметок */
         --note-bg: #ffffff;
-        --note-blue: #0f7ac9;
-        --note-pink: #e03b8e;
-        --note-orange: #f46c20;
 
         /* стеклянная кнопка */
-        --glass-bg: rgba(255, 255, 255, 0.75);
-        --glass-border: rgba(0, 0, 0, 0.08);
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(0, 0, 0, 0.1);
         --glass-text: #1c1c1e;
-        --glass-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        --glass-shadow: 0 4px 20px rgba(0,0,0,0.08);
 
         /* заголовок light */
-        --h1-border: linear-gradient(90deg, #e1ddec, #f7d8b4, #f9f1c0);
+        --h1-color: #111111;
+        --h1-border: linear-gradient(90deg, #4f46e5, #06b6d4);
         
         /* blockquote light */
-        --bq-bg: linear-gradient(90deg, #ece9f3 0%, #f9f7fc 80%, #f9f7fc 100%);
-        --bq-text: var(--text-color);
-        --bq-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        --bq-bg: #f8fafc;
+        --bq-text: #1e293b;
+        --bq-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         --bq-text-shadow: none;
 
         /* h2 light */
-        --h2-text-color: #1a1a1c;
         --h2-text-shadow: none;
-        --h2-blue-bg: linear-gradient(90deg, #f9f1c0 0%, #f9f1c0 20%, #fdfbf0 100%);
-        --h2-pink-bg: linear-gradient(90deg, #f7d8b4 0%, #fbe9e3 80%, #fbe9e3 100%);
-        --h2-orange-bg: linear-gradient(90deg, #e1ddec 0%, #f3f0f7 80%, #f3f0f7 100%);
+        --h2-blue-bg: #e0f2fe; 
+        --h2-blue-text: #0369a1;
+
+        --h2-pink-bg: #ffe4e6; 
+        --h2-pink-text: #be123c;
+
+        --h2-orange-bg: #ede9fe; 
+        --h2-orange-text: #6d28d9;
         
         /* progress bar light */
-        --progress-bg: linear-gradient(90deg, #e1ddec 0%, #3a3552 50%, #4b3052 100%);
+        --progress-bg: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
     }
 
     /* =========================================================
@@ -83,9 +85,6 @@
         --link-color: #8cc2dd;
 
         --note-bg: #222222;
-        --note-blue: #3f86c9;
-        --note-pink: #c94f8a;
-        --note-orange: #c77745;
 
         --glass-bg: #262626;
         --glass-border: rgba(255, 255, 255, 0.12);
@@ -131,9 +130,6 @@
             --link-color: #8cc2dd;
 
             --note-bg: #222222;
-            --note-blue: #3f86c9;
-            --note-pink: #c94f8a;
-            --note-orange: #c77745;
 
             --glass-bg: rgba(40, 40, 40, 0.75);
             --glass-border: rgba(255, 255, 255, 0.12);
@@ -343,7 +339,7 @@
         display: inline-block;
         width: 5px;
         height: 18px;
-        background: var(--note-orange);
+        background: #6d28d9;
         border-radius: 4px;
     }
 
@@ -575,42 +571,42 @@
         margin-top: 50px;
     }
 
-    .spacer {
-        height: 25px;
-        width: 100%;
-    }
-
-        /* =========================================================
+    /* =========================================================
        ИЗОБРАЖЕНИЯ
        ========================================================= */
+    picture {
+        display: block;
+        margin-bottom: 24px !important; /* Отступ от иллюстрации до текста */
+    }
+
     img {
         display: block;
         margin: 0 auto;
         box-shadow: none !important;
         height: auto;
-        max-width: 100%;
     }
 
     @media (min-width: 768px) {
         img {
             width: 100%;
+            border-radius: 12px;
         }
     }
 
     @media (max-width: 767px) {
+        picture {
+            margin-bottom: 24px !important;
+        }
+
         img {
-            width: 190vw;
-            max-width: 190vw;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-left: 0;
-            margin-right: 0;
+            width: 190px !important;        /* Фиксированный размер 190px */
+            max-width: 100% !important;
+            display: block !important;
+            margin: 0 auto !important;      /* Выравнивание по центру */
             border-radius: 0;
             box-shadow: none !important;
         }
     }
-
     </style>
 </head>
 
@@ -629,13 +625,13 @@
             <div class="note-content">
                 <h1 class="note-blue">Как победить одиночество?</h1>
 
-                <<picture id="blogPicture" style="display: block; margin-bottom: 25px;">
-    			<!-- Картинка для ТЕМНОЙ темы -->
-   				 <source id="darkSource" srcset="2.png" media="(prefers-color-scheme: dark)">
+                <picture id="blogPicture">
+                    <!-- Картинка для ТЕМНОЙ темы -->
+                    <source id="darkSource" srcset="2.png" media="(prefers-color-scheme: dark)">
 
-    			<!-- Картинка по умолчанию (для СВЕТЛОЙ темы) -->
-   				<img id="mainImg" src="1.png" alt="Как справиться с одиночеством?" width="190" style="display: block; margin: 0 auto; width: 190px !important; height: auto;">
-				</picture>
+                    <!-- Картинка по умолчанию (для СВЕТЛОЙ темы) -->
+                    <img id="mainImg" src="1.png" alt="Как справиться с одиночеством?">
+                </picture>
 
                 <p>Согласно одному опросу, проведённому в большинстве стран мира, примерно каждый четвёртый человек чувствует себя одиноко. Бывает ли вам одиноко? Сегодня всё больше людей испытывает одиночество. Если вы тоже чувствуете себя одиноко, можно ли справиться с этой проблемой? Да, и у многих это получилось. Победить одиночество под силу и вам.</p>
 
@@ -733,7 +729,7 @@
                 toggleBtn.innerHTML = moonIcon;
                 mainImg.src = '1.png';
                 darkSource.srcset = '1.png';
-                themeColorMeta.setAttribute('content', '#eaebef');
+                themeColorMeta.setAttribute('content', '#f2f3f7');
             }
         }
 
